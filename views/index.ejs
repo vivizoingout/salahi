@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EcoAction - Empoderando Comunidades Sostenibles</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<style>
+		/* Estilos generales */
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+			background-color: #f0f0f0;
+		}
+
+		/* Estilos para el contenedor principal */
+		.container {
+			margin-top: 50px;
+		}
+
+		/* Estilos para el encabezado */
+		header {
+			background-color: #28a745; /* Verde */
+			color: #fff;
+			padding: 20px;
+			text-align: center;
+		}
+
+		/* Estilos para el formulario */
+		form {
+			margin-bottom: 20px;
+		}
+
+		form input[type="email"],
+		form input[type="text"],
+		form input[type="password"] {
+			width: 100%;
+			padding: 10px;
+			margin-bottom: 10px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+		}
+
+		form input[type="submit"] {
+			width: 100%;
+			padding: 10px;
+			border: none;
+			border-radius: 5px;
+			background-color: #28a745; /* Verde */
+			color: #fff;
+			cursor: pointer;
+		}
+
+		/* Estilos para el mensaje de error */
+		.mssg {
+			text-align: center;
+			color: #fff;
+			padding: 10px;
+			border-radius: 5px;
+		}
+
+		.bg-danger {
+			background-color: #dc3545; /* Rojo */
+		}
+
+		/* Estilos para los enlaces */
+		span a {
+			color: #28a745; /* Verde */
+		}
+		/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+
+
+h1 {
+    margin: 0;
+}
+
+nav {
+    margin-top: 20px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 30px;
+}
+
+
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+
+
+
+
+	</style>
+
+	<script>
+		$(document).ready(function(){
+			$( "#form1" ).submit(function(event) {
+				event.preventDefault();
+				$.ajax({
+					type: 'POST',
+					url: '/',
+					data: $('#form1').serialize(),
+					dataType: "json",
+					success: function(response){
+						$('#form1')[0].reset();
+						document.getElementById("check").innerHTML = response.Success;
+         				setTimeout(function(){
+         					document.getElementById("check").innerHTML = "";
+         				}, 3000);
+         				if (response.Success == "Ya estás registrado, ahora puedes iniciar sesión.") {
+         					document.getElementById("aa").click();
+         				};
+         			},
+         			error: function() {
+         			}
+         		});
+			});
+		});
+	</script>
+</head>
+<body>
+	<header>
+		<h1>Bienvenido a EcoAction</h1>
+        <p>EcoAction es una plataforma dedicada a empoderar a individuos y comunidades para generar un impacto positivo en el medio ambiente a través de la educación, el compromiso y la colaboración.</p>
+        <div class="logo">
+          <img src="logo.jpg" alt="EcoAction">
+        </div>
+		<div class="buttons">
+			<button onclick="location.href='/login'" class="btn">Iniciar sesión</button>
+			<button onclick="scrollToForm()" class="btn">Regístrate</button>
+		</div>
+	</header>
+	<script>
+    function scrollToForm() {
+        var formSection = document.getElementById('form1');
+        formSection.scrollIntoView({ behavior: 'smooth' });
+    }
+</script>
+		
+			<main>
+				<section>
+					<h2>Acerca de EcoAction</h2>
+					<p>EcoAction es más que una herramienta educativa. Es una iniciativa impulsada por la comunidad diseñada para abordar los desafíos clave en la sostenibilidad ambiental y promover acciones significativas.</p>
+				</section>
+		
+				<section>
+					<h2>Lo que Hacemos</h2>
+					<p>En EcoAction, proporcionamos:</p>
+					<ul>
+						<li>Educación Interactiva: Módulos atractivos que enseñan a los usuarios sobre la sostenibilidad ambiental, desde la reducción de la contaminación hasta la promoción del reciclaje y reutilización.</li>
+						<li>Gamificación: Motivando a los usuarios a participar en esfuerzos de sostenibilidad a través de desafíos, recompensas y reconocimientos.</li>
+						<li>Plataforma Comunitaria: Un espacio para que los usuarios se conecten con personas afines, colaboren en proyectos de sostenibilidad y celebren logros colectivos.</li>
+					</ul>
+				</section>
+		
+				<section>
+					<h2>Nuestra Misión</h2>
+					<p>Nuestra misión es fomentar una comunidad global de individuos conscientes del medio ambiente que estén equipados con el conocimiento, las herramientas y el apoyo para crear un futuro más sostenible para todos.</p>
+				</section>
+			</main>
+		
+	<div class="container">
+		<div>
+			<p>Regístrese ahora</p>
+		</div>
+		<div class="form-group">
+			<form id="form1" method="post">
+				<input type="email" name="email" placeholder="Correo electrónico" required="" class="form-control"><br/>
+				<input type="text" name="username" placeholder="Nombre de usuario" required="" class="form-control"><br/>
+				<input type="password" name="password" placeholder="Contraseña" required="" class="form-control"><br/>
+				<input type="password" name="passwordConf" placeholder="Confirmar Contraseña" required="" class="form-control"><br/>
+				<input type="submit" value="Registrar" class="btn btn-success">
+			</form>
+		</div>
+		
+		<div class="mssg bg-danger">
+			<span id="check"></span>
+		</div>
+		<div>
+			<span>¡Ya registrado! <a href="/login">Iniciar sesión</a></span>
+		</div>
+		<div id="LangTable"><a href="/login" id="aa"></a></div>
+	</div>
+</body>
+<style>
+	.logo img {
+		width: 70px; /* Adjust the width of the logo */
+	}
+	.buttons {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .btn {
+        background-color: green;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin: 0 10px;
+        transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+        background-color: darkgreen;
+    }
+		</style>
+</html>

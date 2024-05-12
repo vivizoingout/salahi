@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Iniciar sesión</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+	</script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="./css/main.css">
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+
+			$( "#form" ).submit(function(event) {
+				event.preventDefault();
+
+				$.ajax({
+					type: 'POST',
+					url: '/login',
+					data: $('#form').serialize(),
+					dataType: "json",
+					success: function(response){
+						//alert("a");
+						//console.log(response.Success);
+						$('#form')[0].reset();
+
+						document.getElementById("check").innerHTML=response.Success;
+         					//ADD THIS CODE
+         					setTimeout(function(){
+         						document.getElementById("check").innerHTML="";
+         					},3000);
+         					if (response.Success=="Success!") {
+         						document.getElementById("aa").click();
+         					};
+         				},
+         				error: function() {
+         				}
+         			})
+			});
+
+		});
+	</script>
+</head>
+<body>
+	<div class="col-md-4 col-md-offset-4">
+		<div>
+			<p>Iniciar sesión</p>
+		</div>
+		<div class="form-group">
+			<form id="form" method="post" >
+				<input type="text" name="email" placeholder="Correo electrónico" required="" class="form-control"><br/>
+				<input type="password" name="password" placeholder="Contraseña" required="" class="form-control"><br/>
+				<input type="submit" value="Login" class="btn btn-success">
+			</form>
+		</div>
+		<div class="mssg bg-danger">
+			<span id="check" ></span>
+		</div>
+		<div id="LangTable"><a href="/profile" id="aa"></a>
+		</div>
+		<div><span>¿Crear una nueva cuenta?</span><a href="/">Regístrate aquí</a></div>
+
+		</div>
+		
+	</div>
+</body>
+<style>
+/* Add your custom styles here */
+body {
+    background-color: #f8f9fa; /* Light gray background */
+    font-family: Arial, sans-serif; /* Use Arial font */
+}
+
+.col-md-4 {
+    margin-top: 50px; /* Add space from the top */
+}
+
+.form-group {
+    margin-bottom: 20px; /* Add space between form elements */
+}
+
+p {
+    font-size: 24px; /* Larger font size for headings */
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    width: 100%; /* Make inputs fill the entire width */
+    padding: 10px; /* Add padding to inputs */
+    border: 1px solid #ccc; /* Add border to inputs */
+    border-radius: 4px; /* Add rounded corners to inputs */
+    box-sizing: border-box; /* Include padding and border in input's total width */
+}
+
+input[type="submit"] {
+    width: 100%; /* Make submit button fill the entire width */
+    padding: 10px; /* Add padding to button */
+    border: none; /* Remove border */
+    border-radius: 4px; /* Add rounded corners */
+    background-color: #28a745; /* Green background color */
+    color: #fff; /* White text color */
+    cursor: pointer; /* Show pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition for background color change */
+}
+
+input[type="submit"]:hover {
+    background-color: #218838; /* Darker green background color on hover */
+}
+
+.mssg {
+    padding: 10px; /* Add padding to message box */
+    margin-bottom: 20px; /* Add space between message box and other elements */
+    border-radius: 4px; /* Add rounded corners to message box */
+}
+
+.bg-danger {
+    background-color: #dc3545; /* Red background color */
+    color: #fff; /* White text color */
+}
+
+</style>
+
+</html>
